@@ -1,0 +1,1 @@
+# Listas-lineares-Estrutura-de-Dados-2026.2
