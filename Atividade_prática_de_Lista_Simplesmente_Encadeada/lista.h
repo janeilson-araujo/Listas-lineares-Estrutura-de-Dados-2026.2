@@ -1,6 +1,8 @@
 #ifndef LISTA_H
 #define LISTA_H
 
+typedef struct descritor descritor;
+
 int exibirElementos();
 
 void esvaziarLista();

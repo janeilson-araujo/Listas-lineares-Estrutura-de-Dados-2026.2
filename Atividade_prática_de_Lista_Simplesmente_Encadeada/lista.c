@@ -14,17 +14,22 @@ typedef struct descritor
 {
     plista primeiro;
     plista ultimo;
+    int tamanho;
 } descritor, *pdescritor;
 
-static void iniciarLista()
+static void iniciarLista(pdescritor d)
 {
-    descritor d;
     plista l = calloc(1, sizeof(lista));
 
-    d.primeiro = l;
-    d.ultimo = l;
+    d->primeiro = l;
+    d->ultimo = l;
 }
 
-int exibirElementos()
+int exibirElementos(plista l)
 {
+    return(&l->dado);
+    if(l->proximo != NULL){
+        exibirElementos(l->proximo);
+    }
+
 }
