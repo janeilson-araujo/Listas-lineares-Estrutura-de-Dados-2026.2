@@ -25,6 +25,6 @@ static void iniciarLista()
     d.ultimo = l;
 }
 
-int exibirElementosLista()
+int exibirElementos()
 {
 }
