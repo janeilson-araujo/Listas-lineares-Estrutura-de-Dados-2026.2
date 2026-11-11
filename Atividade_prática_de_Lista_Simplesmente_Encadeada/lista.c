@@ -4,16 +4,27 @@
 
 typedef struct lista lista, *plista;
 
-struct lista{
+struct lista
+{
     int dado;
     plista proximo;
 };
 
-typedef struct descritor{
+typedef struct descritor
+{
     plista primeiro;
     plista ultimo;
-}  descritor, *pdescritor;
+} descritor, *pdescritor;
 
-int exibirElementosLista(){
-    
+static void iniciarLista()
+{
+    descritor d;
+    plista l = calloc(1, sizeof(lista));
+
+    d.primeiro = l;
+    d.ultimo = l;
+}
+
+int exibirElementosLista()
+{
 }
