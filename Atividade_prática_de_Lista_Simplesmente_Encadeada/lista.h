@@ -3,7 +3,7 @@
 
 int exibirElementos();
 
-void esvaziarComplemento();
+void esvaziarLista();
 
 void inserirElementoInicio();
 
