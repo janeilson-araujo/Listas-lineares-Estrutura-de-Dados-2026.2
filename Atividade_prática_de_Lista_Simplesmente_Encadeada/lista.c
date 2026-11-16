@@ -25,11 +25,18 @@ static void iniciarLista(pdescritor d)
     d->ultimo = l;
 }
 
-int exibirElementos(plista l)
+int exibirElementos(pdescritor d)
 {
-    return(&l->dado);
-    if(l->proximo != NULL){
-        exibirElementos(l->proximo);
+    plista p = d->primeiro;
+    while(p != NULL){
+        printf("%d ",&p);
+
+        p = p->proximo;
     }
+}
+
+int esvaziarLista(pdescritor d){
+    plista p = d->primeiro;
+    
 
 }

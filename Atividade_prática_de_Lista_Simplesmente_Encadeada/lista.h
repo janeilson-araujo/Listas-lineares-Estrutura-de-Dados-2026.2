@@ -5,7 +5,7 @@ typedef struct descritor descritor;
 
 int exibirElementos();
 
-void esvaziarLista();
+int esvaziarLista();
 
 void inserirElementoInicio();
 
