@@ -35,8 +35,9 @@ int exibirElementos(pdescritor d)
     }
 }
 
-int esvaziarLista(pdescritor d){
-    plista p = d->primeiro;
-    
-
+void esvaziarLista(plista l){
+    if(l->proximo != NULL){
+       esvaziarLista(l->proximo); 
+    }
+    free(l);
 }
