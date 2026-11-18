@@ -27,7 +27,7 @@ static void iniciarLista(pdescritor d, int elem)
     d->ultimo = l;
 
     d->tamanho = d->tamanho + 1;
-    //d->tamanho não pode ter essa logica se ele não começa com um valor, mudar a logica para niciar o valor
+    // d->tamanho não pode ter essa logica se ele não começa com um valor, mudar a logica para niciar o valor
 }
 
 int exibirElementos(pdescritor d)
@@ -95,7 +95,8 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
     plista l = calloc(1, sizeof(lista));
     plista x = d->primeiro;
 
-    for(int i = 1; i < posicao; i++){
+    for (int i = 1; i < posicao; i++)
+    {
         x = x->proximo;
     }
 
@@ -104,4 +105,31 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
     x->proximo = l;
 
     d->tamanho = d->tamanho + 1;
+}
+
+void removerPorValor(pdescritor d, int valor)
+{
+    if (d == NULL)
+    { // ajeitar essa logica
+        return;
+    }
+
+    plista x = d->primeiro;
+
+    for (int i = 1; i < d->tamanho; i++)
+    {
+
+        if(x->dado == valor){
+
+            if (i == 1)
+            {
+                d->primeiro = x->proximo;
+                free(x);
+            }
+            
+        }
+
+        x = x->proximo;
+    }
+    
 }
