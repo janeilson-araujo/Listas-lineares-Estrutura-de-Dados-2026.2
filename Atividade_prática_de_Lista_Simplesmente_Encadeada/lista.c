@@ -45,7 +45,7 @@ void esvaziarLista(plista l){
 }
 
 void inserirElementoInicio(pdescritor d, int elem){
-    if(d == NULL){
+    if(d == NULL){ //ajeitar essa logica
         iniciarLista(d, elem);
     }
     
@@ -55,3 +55,16 @@ void inserirElementoInicio(pdescritor d, int elem){
     l->proximo = d->primeiro;
     d->primeiro = l;
 }
+
+void inserirElementoFinal(pdescritor d, int elem){
+    if(d == NULL){  //ajeitar essa logica
+        iniciarLista(d, elem);
+    }
+
+    plista l = calloc(1, sizeof(lista));
+
+    l->dado = elem;
+    d->ultimo->proximo = l;
+    d->ultimo = l;
+}
+
