@@ -17,9 +17,11 @@ typedef struct descritor
     int tamanho;
 } descritor, *pdescritor;
 
-static void iniciarLista(pdescritor d)
+static void iniciarLista(pdescritor d, int elem)
 {
     plista l = calloc(1, sizeof(lista));
+
+    l->dado = elem;
 
     d->primeiro = l;
     d->ultimo = l;
@@ -40,4 +42,16 @@ void esvaziarLista(plista l){
        esvaziarLista(l->proximo); 
     }
     free(l);
+}
+
+void inserirElementoInicio(pdescritor d, int elem){
+    if(d == NULL){
+        iniciarLista(d, elem);
+    }
+    
+    plista l = calloc(1, sizeof(lista));
+
+    l->dado = elem;
+    l->proximo = d->primeiro;
+    d->primeiro = l;
 }
