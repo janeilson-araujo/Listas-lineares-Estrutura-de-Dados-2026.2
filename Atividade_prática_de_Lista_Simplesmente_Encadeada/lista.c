@@ -26,7 +26,7 @@ pdescritor iniciarLista(void)
 
 int exibirElementos(pdescritor d)
 {
-    if(d == NULL){
+    if(d->primeiro == NULL){
         fprintf(stderr, "Erro: Lista não inicializada.");
         return ;
     }
@@ -39,14 +39,27 @@ int exibirElementos(pdescritor d)
     }
 }
 
-void esvaziarLista(plista l)
-{
-
-    if (l->proximo != NULL)
-    {
-        esvaziarLista(l->proximo);
+static void freeElem(plista l){
+    if(l == NULL){
+        return ;
     }
+    freeElem(l->proximo);
     free(l);
+}
+
+void esvaziarLista(pdescritor d)
+{
+    if (d == NULL)
+    { // ajeitar essa logica
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return ;
+    }
+
+    freeElem(d->primeiro);
+
+    d->primeiro = NULL;
+    d->ultimo = NULL;
+    d->tamanho = 0;
 }
 
 void inserirElementoInicio(pdescritor d, int elem)
@@ -108,7 +121,8 @@ void removerPorValor(pdescritor d, int valor)
 {
     if (d == NULL)
     { // ajeitar essa logica
-        return;
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return ;
     }
 
     plista x = d->primeiro;
