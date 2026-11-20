@@ -98,9 +98,9 @@ void inserirElementoInicio(pdescritor d, int elem)
 
 void inserirElementoFinal(pdescritor d, int elem)
 {
-    if (d == NULL)
-    { // ajeitar essa logica
-        fprintf(stderr, "Erro: Lista não inicializada.");
+    if (d == NULL || d->primeiro == NULL)
+    {
+        fprintf(stderr, "Erro: Lista não inicializada ou vazia.");
         return;
     }
 

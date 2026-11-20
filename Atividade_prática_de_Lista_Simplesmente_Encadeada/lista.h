@@ -7,11 +7,11 @@ pdescritor iniciarLista(void);
 
 int exibirElementos(pdescritor d);
 
-void esvaziarLista();
+void esvaziarLista(pdescritor d);
 
-void inserirElementoInicio();
+void inserirElementoInicio(pdescritor d, int elem);
 
-void inserirElementoFinal();
+void inserirElementoFinal(pdescritor d, int elem);
 
 void inserirElementoQualquerP();
 
