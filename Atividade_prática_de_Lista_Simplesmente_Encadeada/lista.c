@@ -19,18 +19,23 @@ typedef struct descritor
 
 pdescritor iniciarLista(void)
 {
-    pdescritor d = (pdescritor) calloc(1,sizeof(descritor));
+    pdescritor d = (pdescritor)calloc(1, sizeof(descritor));
+
+    d->tamanho = 0;
 
     return d;
 }
 
 int exibirElementos(pdescritor d)
 {
-    if(d->primeiro == NULL){
-        fprintf(stderr, "Erro: Lista não inicializada.");
-        return ;
+    if (d == NULL || d->primeiro == NULL)
+    {
+        fprintf(stderr, "Erro: Lista não inicializada ou vazia.");
+        return;
     }
+
     plista p = d->primeiro;
+
     while (p != NULL)
     {
         printf("%d ", &p);
@@ -39,20 +44,24 @@ int exibirElementos(pdescritor d)
     }
 }
 
-static void freeElem(plista l){
-    if(l == NULL){
-        return ;
+static void freeElem(plista l)
+{
+    if (l == NULL)
+    {
+        return;
     }
+
     freeElem(l->proximo);
+
     free(l);
 }
 
 void esvaziarLista(pdescritor d)
 {
-    if (d == NULL)
-    { // ajeitar essa logica
-        fprintf(stderr, "Erro: Lista não inicializada.");
-        return ;
+    if (d == NULL || d->primeiro == NULL)
+    {
+        fprintf(stderr, "Erro: Lista não inicializada ou vazia.");
+        return;
     }
 
     freeElem(d->primeiro);
@@ -65,16 +74,24 @@ void esvaziarLista(pdescritor d)
 void inserirElementoInicio(pdescritor d, int elem)
 {
     if (d == NULL)
-    { // ajeitar essa logica
+    {
         fprintf(stderr, "Erro: Lista não inicializada.");
-        return ;
+        return;
     }
 
     plista l = calloc(1, sizeof(lista));
 
     l->dado = elem;
-    l->proximo = d->primeiro;
-    d->primeiro = l;
+
+    if (d->primeiro != NULL)
+    {
+        l->proximo = d->primeiro;
+        d->primeiro = l;
+    }
+    else
+    {
+        d->primeiro = l;
+    }
 
     d->tamanho = d->tamanho + 1;
 }
@@ -84,7 +101,7 @@ void inserirElementoFinal(pdescritor d, int elem)
     if (d == NULL)
     { // ajeitar essa logica
         fprintf(stderr, "Erro: Lista não inicializada.");
-        return ;
+        return;
     }
 
     plista l = calloc(1, sizeof(lista));
@@ -122,7 +139,7 @@ void removerPorValor(pdescritor d, int valor)
     if (d == NULL)
     { // ajeitar essa logica
         fprintf(stderr, "Erro: Lista não inicializada.");
-        return ;
+        return;
     }
 
     plista x = d->primeiro;
