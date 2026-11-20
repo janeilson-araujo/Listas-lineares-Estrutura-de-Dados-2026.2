@@ -17,21 +17,19 @@ typedef struct descritor
     int tamanho;
 } descritor, *pdescritor;
 
-static void iniciarLista(pdescritor d, int elem)
+pdescritor iniciarLista(void)
 {
-    plista l = calloc(1, sizeof(lista));
+    pdescritor d = (pdescritor) calloc(1,sizeof(descritor));
 
-    l->dado = elem;
-
-    d->primeiro = l;
-    d->ultimo = l;
-
-    d->tamanho = d->tamanho + 1;
-    // d->tamanho não pode ter essa logica se ele não começa com um valor, mudar a logica para niciar o valor
+    return d;
 }
 
 int exibirElementos(pdescritor d)
 {
+    if(d == NULL){
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return ;
+    }
     plista p = d->primeiro;
     while (p != NULL)
     {
@@ -43,6 +41,7 @@ int exibirElementos(pdescritor d)
 
 void esvaziarLista(plista l)
 {
+
     if (l->proximo != NULL)
     {
         esvaziarLista(l->proximo);
@@ -54,9 +53,8 @@ void inserirElementoInicio(pdescritor d, int elem)
 {
     if (d == NULL)
     { // ajeitar essa logica
-        iniciarLista(d, elem);
-
-        return;
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return ;
     }
 
     plista l = calloc(1, sizeof(lista));
@@ -72,9 +70,8 @@ void inserirElementoFinal(pdescritor d, int elem)
 {
     if (d == NULL)
     { // ajeitar essa logica
-        iniciarLista(d, elem);
-
-        return;
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return ;
     }
 
     plista l = calloc(1, sizeof(lista));
@@ -119,17 +116,16 @@ void removerPorValor(pdescritor d, int valor)
     for (int i = 1; i < d->tamanho; i++)
     {
 
-        if(x->dado == valor){
+        if (x->dado == valor)
+        {
 
             if (i == 1)
             {
                 d->primeiro = x->proximo;
                 free(x);
             }
-            
         }
 
         x = x->proximo;
     }
-    
 }
