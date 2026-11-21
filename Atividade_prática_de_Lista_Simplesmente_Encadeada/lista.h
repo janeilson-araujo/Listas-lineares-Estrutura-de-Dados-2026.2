@@ -17,7 +17,7 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao);
 
 void removerPorValor(pdescritor d, int valor);
 
-int removerPorPosicao();
+int removerPorPosicao(pdescritor d, int posicao);
 
 int buscarElementoPorValor();
 

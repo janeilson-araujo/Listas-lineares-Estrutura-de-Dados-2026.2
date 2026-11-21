@@ -185,9 +185,37 @@ void removerPorValor(pdescritor d, int valor)
             {
                 anterior->proximo = l->proximo;
                 free(l);
+                l = NULL;
             }
 
             d->tamanho = d->tamanho - 1;
+        }
+        else
+        {
+            anterior = l;
+            l = l->proximo;
+        }
+    }
+}
+
+int removerPorPosicao(pdescritor d, int posicao)
+{
+    if (d == NULL)
+    {
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return;
+    }
+
+    plista l = d->primeiro;
+    plista anterior = NULL;
+
+    for (int i = 1; i <= posicao; i++)
+    {
+
+        if (i == posicao)
+        {
+            anterior->proximo = l->proximo;
+            free(l);
         }
         else
         {
