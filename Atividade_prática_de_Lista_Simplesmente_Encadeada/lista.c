@@ -224,3 +224,25 @@ int removerPorPosicao(pdescritor d, int posicao)
         }
     }
 }
+
+int buscarElementoPorValor(pdescritor d, int valor)
+{
+    if (d == NULL)
+    {
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return;
+    }
+
+    plista l = d->primeiro;
+
+    for(int i = 1; i < d->tamanho; i++)
+    {
+        if (l->dado == valor)
+        {
+            return i;
+        }
+        l = l->proximo;
+    }
+
+    return -1;
+}
