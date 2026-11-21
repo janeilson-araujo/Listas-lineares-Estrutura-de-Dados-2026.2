@@ -115,10 +115,12 @@ void inserirElementoFinal(pdescritor d, int elem)
 
 void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
 {
-    if (posicao > d->tamanho)
-    { // ajeitar essa logica
+    if (d == NULL || posicao < 1 || posicao > d->tamanho + 1)
+    {
+        fprintf(stderr, "Erro: posição maior que quantidade de elementos na lista.");
         return;
     }
+
     plista l = calloc(1, sizeof(lista));
     plista x = d->primeiro;
 
@@ -128,8 +130,22 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
     }
 
     l->dado = elem;
-    l->proximo = x->proximo;
-    x->proximo = l;
+
+    if (posicao == 1)
+    {
+        l->proximo = d->primeiro;
+        d->primeiro = l;
+    }
+    else if (posicao == d->tamanho + 1)
+    {
+        x->proximo = l;
+        d->ultimo = l;
+    }
+    else
+    {
+        l->proximo = x->proximo;
+        x->proximo = l;
+    }
 
     d->tamanho = d->tamanho + 1;
 }
@@ -137,7 +153,7 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
 void removerPorValor(pdescritor d, int valor)
 {
     if (d == NULL)
-    { // ajeitar essa logica
+    {
         fprintf(stderr, "Erro: Lista não inicializada.");
         return;
     }
