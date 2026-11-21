@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <lista.h>
+#include "lista.h"
 
-typedef struct lista
+typedef struct lista lista, *plista;
+
+struct lista
 {
     int dado;
     plista proximo;
-} lista, *plista;
+};
 
 typedef struct descritor
 {
