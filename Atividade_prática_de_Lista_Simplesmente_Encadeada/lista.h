@@ -13,9 +13,9 @@ void inserirElementoInicio(pdescritor d, int elem);
 
 void inserirElementoFinal(pdescritor d, int elem);
 
-void inserirElementoQualquerP();
+void inserirElementoQualquerP(pdescritor d, int elem, int posicao);
 
-void removerPorValor();
+void removerPorValor(pdescritor d, int valor);
 
 int removerPorPosicao();
 

@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <lista.h>
 
-typedef struct lista lista, *plista;
-
-struct lista
+typedef struct lista
 {
     int dado;
     plista proximo;
-};
+} lista, *plista;
 
 typedef struct descritor
 {
@@ -91,6 +89,7 @@ void inserirElementoInicio(pdescritor d, int elem)
     else
     {
         d->primeiro = l;
+        d->ultimo = l;
     }
 
     d->tamanho = d->tamanho + 1;
@@ -158,21 +157,42 @@ void removerPorValor(pdescritor d, int valor)
         return;
     }
 
-    plista x = d->primeiro;
+    plista l = d->primeiro;
+    plista anterior = NULL;
 
-    for (int i = 1; i < d->tamanho; i++)
+    for (int i = 1; i <= d->tamanho; i++)
     {
 
-        if (x->dado == valor)
+        if (l->dado == valor)
         {
 
             if (i == 1)
             {
-                d->primeiro = x->proximo;
-                free(x);
-            }
-        }
 
-        x = x->proximo;
+                d->primeiro = d->primeiro->proximo;
+                free(l);
+                l = NULL;
+                l = d->primeiro;
+            }
+            else if (i == d->tamanho)
+            {
+                d->ultimo = anterior;
+                free(l);
+                l = NULL;
+                l = anterior->proximo;
+            }
+            else
+            {
+                anterior->proximo = l->proximo;
+                free(l);
+            }
+
+            d->tamanho = d->tamanho - 1;
+        }
+        else
+        {
+            anterior = l;
+            l = l->proximo;
+        }
     }
 }
