@@ -235,7 +235,7 @@ int buscarElementoPorValor(pdescritor d, int valor)
 
     plista l = d->primeiro;
 
-    for(int i = 1; i < d->tamanho; i++)
+    for (int i = 1; i < d->tamanho; i++)
     {
         if (l->dado == valor)
         {
@@ -245,4 +245,15 @@ int buscarElementoPorValor(pdescritor d, int valor)
     }
 
     return -1;
+}
+
+int tamanhoLista(pdescritor d)
+{
+    if (d == NULL)
+    {
+        fprintf(stderr, "Erro: Lista não inicializada.");
+        return;
+    }
+
+    return d->tamanho;
 }
