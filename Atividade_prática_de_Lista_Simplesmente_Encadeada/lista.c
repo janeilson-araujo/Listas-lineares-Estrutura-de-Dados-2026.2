@@ -60,7 +60,6 @@ void esvaziarLista(pdescritor d)
 {
     if (d == NULL || d->primeiro == NULL)
     {
-        fprintf(stderr, "Erro: Lista não inicializada ou vazia.");
         return;
     }
 
@@ -99,15 +98,21 @@ void inserirElementoInicio(pdescritor d, int elem)
 
 void inserirElementoFinal(pdescritor d, int elem)
 {
-    if (d == NULL || d->primeiro == NULL)
+    if (d == NULL)
     {
-        fprintf(stderr, "Erro: Lista não inicializada ou vazia.");
+        fprintf(stderr, "Erro: Lista não inicializada.");
         return;
     }
 
     plista l = calloc(1, sizeof(lista));
 
     l->dado = elem;
+
+    if (d->primeiro == NULL)
+    {
+        d->primeiro = l;
+    }
+
     d->ultimo->proximo = l;
     d->ultimo = l;
 
@@ -140,6 +145,11 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
     else if (posicao == d->tamanho + 1)
     {
         x->proximo = l;
+        d->ultimo = l;
+    }
+    else if (d->primeiro = NULL)
+    {
+        d->primeiro = l;
         d->ultimo = l;
     }
     else
@@ -237,7 +247,7 @@ int buscarElementoPorValor(pdescritor d, int valor)
 
     plista l = d->primeiro;
 
-    for (int i = 1; i < d->tamanho; i++)
+    for (int i = 1; i <= d->tamanho; i++)
     {
         if (l->dado == valor)
         {
