@@ -71,6 +71,7 @@ int main()
         }
         else if (strcmp(comando, "-f") == 0)
         {
+            printf(".");
             break;
         }
     }
