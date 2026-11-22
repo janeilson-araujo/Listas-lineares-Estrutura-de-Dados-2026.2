@@ -21,27 +21,35 @@ pdescritor iniciarLista(void)
 {
     pdescritor d = (pdescritor)calloc(1, sizeof(descritor));
 
+    if (d == NULL)
+    {
+        return NULL;
+    }
+
     d->tamanho = 0;
 
     return d;
 }
 
-int exibirElementos(pdescritor d)
+void exibirElementos(pdescritor d)
 {
     if (d == NULL || d->primeiro == NULL)
     {
-        fprintf(stderr, "Erro: Lista não inicializada ou vazia.");
-        return;
+        printf("Lista vazia.\n");
+        return ;
     }
 
     plista p = d->primeiro;
 
+    printf("Lista:");
     while (p != NULL)
     {
-        printf("%d ", &p);
-
+        printf("%d ", p->dado);
         p = p->proximo;
     }
+
+    printf("\n");
+    return;
 }
 
 static void freeElem(plista l)
@@ -80,6 +88,11 @@ void inserirElementoInicio(pdescritor d, int elem)
 
     plista l = calloc(1, sizeof(lista));
 
+    if (l == NULL)
+    {
+        return;
+    }
+
     l->dado = elem;
 
     if (d->primeiro != NULL)
@@ -106,15 +119,23 @@ void inserirElementoFinal(pdescritor d, int elem)
 
     plista l = calloc(1, sizeof(lista));
 
+    if (l == NULL)
+    {
+        return;
+    }
+
     l->dado = elem;
 
     if (d->primeiro == NULL)
     {
         d->primeiro = l;
+        d->ultimo = l;
     }
-
-    d->ultimo->proximo = l;
-    d->ultimo = l;
+    else
+    {
+        d->ultimo->proximo = l;
+        d->ultimo = l;
+    }
 
     d->tamanho = d->tamanho + 1;
 }
@@ -128,9 +149,15 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
     }
 
     plista l = calloc(1, sizeof(lista));
+
+    if (l == NULL)
+    {
+        return;
+    }
+
     plista x = d->primeiro;
 
-    for (int i = 1; i < posicao; i++)
+    for (int i = 1; i < posicao - 1; i++)
     {
         x = x->proximo;
     }
@@ -141,15 +168,14 @@ void inserirElementoQualquerP(pdescritor d, int elem, int posicao)
     {
         l->proximo = d->primeiro;
         d->primeiro = l;
+        if (d->ultimo == NULL)
+        {
+            d->ultimo = l;
+        }
     }
     else if (posicao == d->tamanho + 1)
     {
         x->proximo = l;
-        d->ultimo = l;
-    }
-    else if (d->primeiro = NULL)
-    {
-        d->primeiro = l;
         d->ultimo = l;
     }
     else
@@ -172,77 +198,96 @@ void removerPorValor(pdescritor d, int valor)
     plista l = d->primeiro;
     plista anterior = NULL;
 
-    for (int i = 1; i <= d->tamanho; i++)
+    while (l != NULL)
     {
-
         if (l->dado == valor)
         {
+            plista remover = l;
 
-            if (i == 1)
+            if (anterior == NULL)
             {
-
-                d->primeiro = d->primeiro->proximo;
-                free(l);
-                l = NULL;
                 l = d->primeiro;
-            }
-            else if (i == d->tamanho)
-            {
-                d->ultimo = anterior;
-                free(l);
-                l = NULL;
-                l = anterior->proximo;
+                d->primeiro = l->proximo;
+                l = d->primeiro;
             }
             else
             {
                 anterior->proximo = l->proximo;
-                free(l);
-                l = NULL;
+                l = l->proximo;
             }
 
-            d->tamanho = d->tamanho - 1;
+            if (remover == d->ultimo)
+            {
+                d->ultimo = anterior;
+            }
+
+            free(remover);
+            d->tamanho--;
         }
         else
         {
             anterior = l;
             l = l->proximo;
         }
+    }
+
+    if (d->tamanho == 0)
+    {
+        d->primeiro = NULL;
+        d->ultimo = NULL;
     }
 }
 
 int removerPorPosicao(pdescritor d, int posicao)
 {
-    if (d == NULL)
+    if (d == NULL || d->primeiro == NULL ||
+        posicao < 1 || posicao > d->tamanho)
     {
-        fprintf(stderr, "Erro: Lista não inicializada.");
-        return;
+        return -1;
     }
 
     plista l = d->primeiro;
     plista anterior = NULL;
 
-    for (int i = 1; i <= posicao; i++)
+    for (int i = 1; i < posicao; i++)
     {
-
-        if (i == posicao)
-        {
-            anterior->proximo = l->proximo;
-            free(l);
-        }
-        else
-        {
-            anterior = l;
-            l = l->proximo;
-        }
+        anterior = l;
+        l = l->proximo;
     }
+
+    int valorRemovido = l->dado;
+
+    if (anterior == NULL)
+    {
+        d->primeiro = l->proximo;
+    }
+    else
+    {
+        anterior->proximo = l->proximo;
+    }
+
+    if (l == d->ultimo)
+    {
+        d->ultimo = anterior;
+    }
+
+    free(l);
+    d->tamanho--;
+
+    if (d->tamanho == 0)
+    {
+        d->primeiro = NULL;
+        d->ultimo = NULL;
+    }
+
+    return valorRemovido;
 }
 
 int buscarElementoPorValor(pdescritor d, int valor)
 {
-    if (d == NULL)
+    if (d == NULL || d->primeiro == NULL)
     {
-        fprintf(stderr, "Erro: Lista não inicializada.");
-        return;
+        return -1;
     }
 
     plista l = d->primeiro;
@@ -264,7 +309,7 @@ int tamanhoLista(pdescritor d)
     if (d == NULL)
     {
         fprintf(stderr, "Erro: Lista não inicializada.");
-        return;
+        return 0;
     }
 
     return d->tamanho;

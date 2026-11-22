@@ -5,7 +5,7 @@ typedef struct descritor descritor, *pdescritor;
 
 pdescritor iniciarLista(void);
 
-int exibirElementos(pdescritor d);
+void exibirElementos(pdescritor d);
 
 void esvaziarLista(pdescritor d);
 
