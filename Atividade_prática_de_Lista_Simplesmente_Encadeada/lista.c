@@ -35,7 +35,7 @@ void exibirElementos(pdescritor d)
 {
     if (d == NULL || d->primeiro == NULL)
     {
-        printf("Lista vazia.\n");
+        printf("Lista vazia \n");
         return ;
     }
 

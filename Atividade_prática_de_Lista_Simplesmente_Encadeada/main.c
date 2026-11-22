@@ -71,12 +71,12 @@ int main()
         }
         else if (strcmp(comando, "-f") == 0)
         {
-            printf(".");
+            printf("\b.");
             break;
         }
     }
 
     esvaziarLista(lista);
     free(lista);
-    return EXIT_SUCCESS;
+    return 0;
 }
