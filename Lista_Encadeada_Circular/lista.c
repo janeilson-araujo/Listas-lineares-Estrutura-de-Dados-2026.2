@@ -177,35 +177,35 @@ void removerPorValor(pdescritor d, float valor)
 
     plista atual = d->primeiro;
     plista anterior = d->ultimo;
+    int quantidade = d->tamanho;
 
-    for (int i = 0; i < d->tamanho;)
+    for (int i = 0; i < quantidade; i++)
     {
-        plista remover = atual;
         plista proximo = atual->proximo;
 
-        if (remover->dado == valor)
+        if (atual->dado == valor)
         {
             if (d->tamanho == 1)
             {
                 d->primeiro = NULL;
                 d->ultimo = NULL;
                 d->tamanho = 0;
-                free(remover);
+                free(atual);
                 return;
             }
 
             anterior->proximo = proximo;
 
-            if (remover == d->primeiro)
+            if (atual == d->primeiro)
             {
                 d->primeiro = proximo;
             }
-            if (remover == d->ultimo)
+            if (atual == d->ultimo)
             {
                 d->ultimo = anterior;
             }
 
-            free(remover);
+            free(atual);
             d->tamanho--;
             atual = proximo;
         }
@@ -213,7 +213,6 @@ void removerPorValor(pdescritor d, float valor)
         {
             anterior = atual;
             atual = proximo;
-            i++;
         }
     }
 }
