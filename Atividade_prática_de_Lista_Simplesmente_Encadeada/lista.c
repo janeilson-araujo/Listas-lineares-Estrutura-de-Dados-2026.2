@@ -41,7 +41,7 @@ void exibirElementos(pdescritor d)
 
     plista p = d->primeiro;
 
-    printf("Lista:");
+    printf("Lista: ");
     while (p != NULL)
     {
         printf("%d ", p->dado);
