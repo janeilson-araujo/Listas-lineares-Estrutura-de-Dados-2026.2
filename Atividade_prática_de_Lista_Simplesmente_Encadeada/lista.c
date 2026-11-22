@@ -35,20 +35,19 @@ void exibirElementos(pdescritor d)
 {
     if (d == NULL || d->primeiro == NULL)
     {
-        printf("Lista vazia \n");
-        return ;
+        printf("Lista vazia.");
+        return;
     }
 
     plista p = d->primeiro;
 
-    printf("Lista: ");
+    printf("Lista:");
     while (p != NULL)
     {
-        printf("%d ", p->dado);
+        printf(" %d", p->dado);
         p = p->proximo;
     }
 
-    printf("\n");
     return;
 }
 

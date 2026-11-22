@@ -9,6 +9,7 @@ int main()
     char comando[4];
     int valor;
     int posicao;
+    int exibicaoPendente = 0;
 
     if (lista == NULL)
     {
@@ -17,9 +18,32 @@ int main()
 
     while (scanf("%3s", comando) == 1)
     {
+        if (exibicaoPendente)
+        {
+            if (strcmp(comando, "-f") == 0)
+            {
+                if (tamanhoLista(lista) > 0)
+                {
+                    printf(".");
+                }
+            }
+            else
+            {
+                printf("\n");
+            }
+            exibicaoPendente = 0;
+
+            if (strcmp(comando, "-f") == 0)
+            {
+                printf("\n");
+                break;
+            }
+        }
+
         if (strcmp(comando, "-s") == 0)
         {
             exibirElementos(lista);
+            exibicaoPendente = 1;
         }
         else if (strcmp(comando, "-c") == 0)
         {
@@ -71,9 +95,13 @@ int main()
         }
         else if (strcmp(comando, "-f") == 0)
         {
-            printf("\b.");
             break;
         }
+    }
+
+    if (exibicaoPendente)
+    {
+        printf("\n");
     }
 
     esvaziarLista(lista);
