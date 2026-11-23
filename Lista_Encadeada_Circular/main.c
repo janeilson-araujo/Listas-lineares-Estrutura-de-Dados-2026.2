@@ -57,11 +57,11 @@ int main(void)
 
             if (posicao == -1)
             {
-                printf("Elemento %g não encontrado.\n", valor);
+                printf("Elemento %.7g não encontrado.\n", valor);
             }
             else
             {
-                printf("Elemento %g encontrado na posição %d.\n",
+                printf("Elemento %.7g encontrado na posição %d.\n",
                        valor, posicao);
             }
         }

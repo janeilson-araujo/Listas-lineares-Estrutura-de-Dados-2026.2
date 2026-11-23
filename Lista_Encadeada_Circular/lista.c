@@ -10,6 +10,14 @@ struct lista
     plista proximo;
 };
 
+#define FLOAT_EPSILON 1e-5f
+
+static int floatIgual(float a, float b)
+{
+    float diferenca = a - b;
+    return diferenca < FLOAT_EPSILON && diferenca > -FLOAT_EPSILON;
+}
+
 struct descritor
 {
     plista primeiro;
@@ -36,7 +44,7 @@ void exibirElementos(pdescritor d)
     printf("Lista:");
     for (int i = 0; i < d->tamanho; i++)
     {
-        printf(" %g", atual->dado);
+        printf(" %.7g", atual->dado);
         atual = atual->proximo;
     }
     printf("\n");
@@ -183,7 +191,7 @@ void removerPorValor(pdescritor d, float valor)
     {
         plista proximo = atual->proximo;
 
-        if (atual->dado == valor)
+        if (floatIgual(atual->dado, valor))
         {
             if (d->tamanho == 1)
             {
@@ -271,7 +279,7 @@ int buscarElementoPorValor(pdescritor d, float valor)
 
     for (int i = 1; i <= d->tamanho; i++)
     {
-        if (atual->dado == valor)
+        if (floatIgual(atual->dado, valor))
         {
             return i;
         }
