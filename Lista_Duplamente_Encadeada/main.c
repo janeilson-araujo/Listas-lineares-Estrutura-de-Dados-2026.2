@@ -22,10 +22,7 @@ int main()
         {
             if (strcmp(comando, "-f") == 0)
             {
-                if (tamanhoLista(lista) > 0)
-                {
-                    printf(".");
-                }
+                printf(".");
             }
             else
             {

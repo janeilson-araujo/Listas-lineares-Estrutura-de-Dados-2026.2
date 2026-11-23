@@ -1,35 +1,49 @@
-Exercício: Implementando o Tipo Abstrato Lista Duplamente Encadeada
-Objetivo
-Praticar a implementação e manipulação de estruturas de dados do tipo Lista Linear Duplamente Encadeada, utilizando um TAD (Tipo Abstrato de Dados).
+# Exercício: Implementando o Tipo Abstrato Lista Duplamente Encadeada
 
-Enunciado
-Especifique e implemente um Tipo Abstrato de Dados chamado TListaDup, que manipule dados do tipo char e ofereça os seguintes serviços:
+## Objetivo
 
-Exibir todos os elementos armazenados na lista;
-Esvaziar completamente a lista;
-Inserir um novo elemento no início da lista;
-Inserir um novo elemento no final da lista;
-Inserir um novo elemento em posição específica da lista;
-Remover um elemento específico da lista pelo valor (obs: todas as ocorrências do valor devem ser removidas);
-Remover um elemento específico da lista pela posição (obs: a função deve retornar o valor removido);
-Buscar um elemento na lista pelo valor. A função deve retornar a posição do elemento na lista (obs: caso ele não exista, retornar o valor -1);
-Obter o tamanho atual da lista.
+Praticar a implementação e manipulação de estruturas de dados do tipo **Lista Linear Duplamente Encadeada**, utilizando um TAD (Tipo Abstrato de Dados).
+
+## Enunciado
+
+Especifique e implemente um Tipo Abstrato de Dados chamado `TListaDup`, que manipule dados do tipo `char` e ofereça os seguintes serviços:
+
+- Exibir todos os elementos armazenados na lista;
+- Esvaziar completamente a lista;
+- Inserir um novo elemento no início da lista;
+- Inserir um novo elemento no final da lista;
+- Inserir um novo elemento em posição específica da lista;
+- Remover um elemento específico da lista pelo valor (todas as ocorrências do valor devem ser removidas);
+- Remover um elemento específico da lista pela posição (a função deve retornar o valor removido);
+- Buscar um elemento na lista pelo valor. A função deve retornar a posição do elemento na lista. Caso ele não exista, retornar o valor `-1`;
+- Obter o tamanho atual da lista.
+
 A implementação deve utilizar ponteiros para criar e manipular os nós da lista encadeada.
 
-O programa principal (main.c) deve ler comandos via entrada padrão (teclado) para manipular a lista. Os comandos possíveis são:
+## Comandos
 
--s → Exibe o estado atual da lista.
--c → Esvazia a lista.
--ii X → Insere o valor X no início da lista.
--if X → Insere o valor X no final da lista.
--i X Y → Insere o valor X na posição Y da lista (posição inicial inicia com 1).
--r X → Remove o elemento X da lista.
--rp X → Remove o elemento presente na posição X da lista.
--b X → Busca o elemento X na lista e informa a posição do elemento.
--t → Exibe o tamanho atual da lista.
--f → Finaliza a execução do programa.
-Exemplo de Uso
-Entrada de dados
+O programa principal (`main.c`) deve ler comandos via entrada padrão (teclado) para manipular a lista.
+
+Os comandos possíveis são:
+
+| Comando | Descrição |
+| --- | --- |
+| `-s` | Exibe o estado atual da lista. |
+| `-c` | Esvazia a lista. |
+| `-ii X` | Insere o valor `X` no início da lista. |
+| `-if X` | Insere o valor `X` no final da lista. |
+| `-i X Y` | Insere o valor `X` na posição `Y` da lista (a posição inicial é 1). |
+| `-r X` | Remove o elemento `X` da lista. |
+| `-rp X` | Remove o elemento presente na posição `X` da lista. |
+| `-b X` | Busca o elemento `X` na lista e informa a posição do elemento. |
+| `-t` | Exibe o tamanho atual da lista. |
+| `-f` | Finaliza a execução do programa. |
+
+## Exemplo de uso
+
+### Entrada de dados
+
+```text
 -ii A -if B -if C -s
 -b B
 -i D 3 -s
@@ -38,7 +52,11 @@ Entrada de dados
 -t
 -c -s
 -f
-Saída esperada
+```
+
+### Saída esperada
+
+```text
 Lista: A B C
 Posição do elemento B: 2
 Lista: A B D C
@@ -46,13 +64,26 @@ Lista: B D C
 Lista: B C
 Tamanho da lista: 2
 Lista vazia.
-Formatos aceitos: zip
+```
 
-Atenção: Para ser corretamente corrigido, seu código, se entregue em um único arquivo ZIP/Makefile:
-deve obrigatoriamente ter um arquivo Makefile na raiz do arquivo ZIP;
-deve conter apenas o comando de compilação na diretiva all — será executado make all para compilar o código;
-deve conter apenas o comando de execução na diretiva run — será executado make run para executar o código.
-Entrada 1
+## Formatos aceitos
+
+- ZIP
+
+### Requisitos do arquivo ZIP
+
+Para ser corretamente corrigido, o código deve ser entregue em um único arquivo ZIP contendo um `Makefile` na raiz.
+
+O `Makefile` deve:
+
+- conter apenas o comando de compilação na diretiva `all` — será executado `make all` para compilar o código;
+- conter apenas o comando de execução na diretiva `run` — será executado `make run` para executar o código.
+
+## Casos de teste
+
+### Entrada 1
+
+```text
 -ii A -if B -if C -s
 -b B
 -i D 3 -s
@@ -61,7 +92,11 @@ Entrada 1
 -t
 -c -s
 -f
-Saída esperada 1
+```
+
+### Saída esperada 1
+
+```text
 Lista: A B C
 Posição do elemento B: 2
 Lista: A B D C
@@ -69,7 +104,11 @@ Lista: B D C
 Lista: B C
 Tamanho da lista: 2
 Lista vazia.
-Entrada 2
+```
+
+### Entrada 2
+
+```text
 -ii A -if B -if C -if D -if E -s
 -b C
 -b Z
@@ -107,7 +146,11 @@ Entrada 2
 -t
 -c -s
 -f
-Saída esperada 2
+```
+
+### Saída esperada 2
+
+```text
 Lista: A B C D E
 Posição do elemento C: 3
 Posição do elemento Z: -1
@@ -144,11 +187,23 @@ Lista: N
 Posição do elemento N: 1
 Tamanho da lista: 1
 Lista vazia.
-Entrada 3
+```
+
+### Entrada 3
+
+```text
 -s -f
-Saída esperada 3
+```
+
+### Saída esperada 3
+
+```text
 Lista vazia.
-Entrada 4
+```
+
+### Entrada 4
+
+```text
 -ii A -if B -if C -if A -if D -if A -if E -s
 -r A -s
 -b A
@@ -161,7 +216,11 @@ Entrada 4
 -c
 -ii N -if O -i E 2 -i C 3 -i I 4 -s
 -f
-Saída esperada 4
+```
+
+### Saída esperada 4
+
+```text
 Lista: A B C A D A E
 Lista: B C D E
 Posição do elemento A: -1
@@ -172,3 +231,4 @@ Posição do elemento E: 4
 Tamanho da lista: 4
 Lista: B C D E
 Lista: N E C I O.
+```
